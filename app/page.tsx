@@ -25,10 +25,9 @@ export default function Home() {
 
       <section id="top" className="hero">
         <div className="heroCopy">
-          <p className="eyebrow">PERSONAL PORTFOLIO</p>
+          <p className="eyebrow">{profile.nameEn}</p>
           <h1>
             {profile.name}
-            <span>{profile.nameEn}</span>
           </h1>
           <p className="heroTitle">{profile.title}</p>
           <p className="lead">{profile.summary}</p>

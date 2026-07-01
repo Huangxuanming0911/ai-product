@@ -35,7 +35,7 @@ export type Practice = {
 };
 
 export const profile = {
-  name: "黄轩铭",
+  name: "黄炫铭",
   nameEn: "Huang Xuanming",
   title: "Product thinking, AI prototypes, and systems experiments.",
   summary:
