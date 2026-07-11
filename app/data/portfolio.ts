@@ -48,60 +48,88 @@ export const profile = {
 
 export const works: Work[] = [
   {
-    slug: "beergame-dqn",
-    title: "Beer Game DQN",
-    label: "Reinforcement Learning",
-    summary: "用强化学习探索供应链订货决策，把课程里的 Beer Game 变成可复现实验。",
-    role: "算法实验、环境整理、结果分析",
-    status: "课程项目 / 可复现实验",
-    tags: ["DQN", "PPO", "Supply Chain", "Python"],
+    slug: "seeding-copilot",
+    title: "种草文案优化 Copilot",
+    label: "Content AI MVP",
+    summary: "把广告感商单草稿，改成有证据、有边界、可拍摄的种草内容。",
+    role: "产品机会验证、MVP 原型设计、前端 Demo、Coze 工作流、案例验证",
+    status: "Online MVP / Case Study",
+    tags: ["AI Product", "Content AI", "MVP", "Coze Workflow"],
     overview:
-      "这个项目围绕三层供应链中的订货策略展开，比较 random、base-stock、DQN、Double DQN、Dueling DQN、PPO 等方法在不同背景策略下的表现。",
+      "这是一个面向接商单博主、小商家内容运营和代运营团队的内容 AI 原型。它不只是生成一篇更会夸的种草文案，而是把原始商单草稿拆成广告感、用户疑虑、证据链、拍摄动作和发布前评分。",
     why:
-      "它不是单纯跑模型，而是在一个有延迟、库存、缺货和利润约束的系统里观察智能体如何学习决策。这类问题和真实产品里的多方协同、反馈延迟、局部最优很相似。",
+      "种草内容的问题通常不是缺少形容词，而是用户不信：卖点堆砌、表达过满、证据不足、评论区接不住追问。这个项目尝试把“可信”变成一套可检查、可迭代的工作流。",
     built: [
-      "整理带 t+1 到货延迟的 Beer Game 环境",
-      "实现 DQN 系列算法、PPO baseline 和多智能体实验",
-      "输出 reward、库存、订货行为和策略对比图",
-      "把实验命令、评估方式和结果写成可复现流程"
+      "定义商品信息、平台、人群、已有草稿、用户疑虑、商品证据和禁用表达等输入结构",
+      "搭建 Coze 多节点工作流，覆盖广告感诊断、疑虑提炼、证据链映射、文案优化和质量评分",
+      "实现可在线访问的轻量 MVP 页面，用于展示输入、优化结果和发布前检查",
+      "以护眼学习台灯为验证案例，整理问大家、用户评价、社区讨论和科普信息作为证据链"
+    ],
+    stack: ["Next.js", "Coze Workflow", "Content AI", "Prompt Design", "Evidence Chain"],
+    evidence: [
+      "在线 MVP：https://ai-real-seeding-director.vercel.app",
+      "一页项目报告 PDF",
+      "护眼学习台灯验证案例",
+      "广告感诊断、证据链、优化稿、分镜建议与发布前评分"
+    ],
+    nextStep:
+      "继续补充 Coze 工作流截图、更多品类验证样本和真实运营反馈，把它从演示型 MVP 推进到可复用的内容优化工作台。"
+  },
+  {
+    slug: "beergame-dqn",
+    title: "Beer Game Decision Lab",
+    label: "Decision Analysis Prototype",
+    summary: "一个围绕供应链多主体决策的实验分析项目，比较局部策略、全链路利润与成本传递。",
+    role: "系统建模、指标设计、实验分析、可视化表达",
+    status: "产品化实验原型",
+    tags: ["Supply Chain", "Multi-Agent", "Profit Metrics", "Python"],
+    overview:
+      "这个项目把 Beer Game 整理成一个供应链多主体决策实验：模拟顾客需求、企业订货、库存、缺货和 t+1 到货延迟，并比较不同策略对局部企业与全链路利润的影响。",
+    why:
+      "它的价值不在于证明某个算法更强，而在于把复杂系统里的成本转移、局部目标和全局结果讲清楚。这类问题和真实 AI 决策产品里的指标设计、反馈延迟、多方协同很接近。",
+    built: [
+      "整理带 t+1 到货延迟的 Beer Game 供应链环境",
+      "实现单智能体与多智能体策略实验",
+      "把实验利润拆成销售收入、采购成本、库存成本和缺货损失",
+      "补充服务水平、缺货率、牛鞭效应和长链路压力测试"
     ],
     stack: ["Python", "PyTorch", "NumPy", "Matplotlib", "Reinforcement Learning"],
     evidence: [
-      "多算法 baseline 对比",
-      "背景策略对比实验",
-      "多智能体 total reward 分析",
-      "训练曲线和行为对比图"
+      "多智能体全链路利润提升到 +3426.55",
+      "单智能体策略下目标企业利润提升但全链路利润为 -5122.25",
+      "3 / 5 / 7 节点长链路压力测试",
+      "利润分解、需求稳健性和牛鞭效应图表"
     ],
     nextStep:
-      "补一个可视化解释页，把供应链状态、动作、reward 和策略差异转成更容易理解的交互图。"
+      "继续把离线图表升级为可交互分析页，让用户可以切换策略、链路长度和需求强度。"
   },
   {
     slug: "wechat-bot",
     title: "WeChat Bot / IM Agent",
     label: "AI Agent Workflow",
-    summary: "围绕微信消息、群聊上下文和多模型回复，搭建一个 IM agent 的实践项目。",
-    role: "功能理解、配置实践、Agent 工作流梳理",
-    status: "工程实践 / Agent 原型",
-    tags: ["Wechaty", "Agent", "OpenCLI", "LLM"],
+    summary: "一个把微信 IM 接入 Agent 工作流的工程实践，关注触发边界、上下文记忆、多模型路由和本地数据读取。",
+    role: "工作流梳理、交互边界设计、Agent 入口分析",
+    status: "IM Agent 实践案例",
+    tags: ["Wechaty", "IM Agent", "OpenCLI", "LLM Routing"],
     overview:
-      "项目把微信扫码登录后的 IM 消息接入到 ChatGPT、DeepSeek、Ollama、Claude、Pi 等服务，也支持本地聊天记录、联系人、群成员和朋友圈缓存读取。",
+      "项目把微信扫码登录后的 IM 消息接入到 ChatGPT、DeepSeek、Ollama、Claude、Pi 等服务，并通过 OpenCLI 读取本地聊天、联系人、群成员和朋友圈缓存。",
     why:
-      "它提供了一个观察 AI agent 如何进入真实沟通渠道的窗口：触发规则、白名单、安全边界、长期记忆、隐私和误回复风险都需要被认真设计。",
+      "它提供了一个观察 Agent 如何进入真实沟通渠道的窗口：触发规则、白名单、群聊上下文、长期记忆、隐私边界和误回复风险都需要被认真设计。",
     built: [
-      "梳理私聊、群聊、白名单和触发规则",
-      "理解多模型 provider 的切换方式",
-      "整理 Pi agent、OpenCLI 和微信数据读取链路",
-      "记录自动回复、记忆和分析功能的边界"
+      "梳理私聊、群聊、白名单和 @ / 引用触发规则",
+      "整理 Pi agent 与多模型 provider 的切换方式",
+      "分析群聊历史上下文、JSONL 消息存储和长期记忆边界",
+      "梳理 OpenCLI 本地微信数据读取与分析命令"
     ],
     stack: ["Node.js", "Wechaty", "CLI", "LLM Providers", "JSONL"],
     evidence: [
-      "多模型服务入口",
-      "群聊和私聊触发策略",
-      "本地微信数据读取命令",
-      "Agent 作为 IM 用户的使用说明"
+      "扫码登录与 Wechaty 消息入口",
+      "群聊历史上下文注入说明",
+      "白名单、触发词和记忆权限设计",
+      "OpenCLI 本地微信数据读取命令"
     ],
     nextStep:
-      "把这个项目抽象成一篇案例：AI agent 进入社交 IM 时，哪些交互边界比模型能力本身更重要。"
+      "补充真实截图、配置片段和一次完整消息链路，把它整理成 IM Agent 进入社交场景的系统案例。"
   },
   {
     slug: "wcf-bridge",

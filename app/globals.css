@@ -557,6 +557,1271 @@ h1 span {
   font-size: 26px;
 }
 
+.beerCasePage {
+  --beer-bg: #f7f0df;
+  --beer-surface: #fffdf7;
+  --beer-foam: #f6e8bc;
+  --beer-amber: #d69a2d;
+  --beer-orange: #b86122;
+  --beer-brown: #3c2614;
+  --beer-muted: #765f45;
+  --beer-line: #e9d8b7;
+  --beer-shadow: 0 24px 78px rgb(126 80 24 / 0.11);
+  display: grid;
+  gap: clamp(40px, 6vw, 76px);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background-color: var(--beer-bg);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgb(90 62 28 / 0.12) 1px, transparent 0),
+    linear-gradient(180deg, #fbf6e9 0%, #f7f0df 42%, #f9f2e3 100%);
+  background-size: 18px 18px, 100% 100%;
+  color: var(--beer-brown);
+}
+
+.beerCasePage > .backLink,
+.beerHero,
+.beerSection,
+.beerRelated {
+  width: min(100%, 1360px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.beerCasePage > .backLink {
+  color: var(--beer-muted);
+}
+
+.beerHero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 4vw, 42px);
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--beer-line);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 84% 16%, rgb(255 255 255 / 0.86) 0 10%, transparent 24%),
+    linear-gradient(150deg, rgb(255 253 247 / 0.98), rgb(250 239 205 / 0.88) 58%, rgb(232 184 91 / 0.22)),
+    var(--beer-bg);
+  padding: clamp(38px, 7vw, 78px) clamp(24px, 5vw, 72px);
+  box-shadow: var(--beer-shadow);
+  text-align: center;
+}
+
+.beerHero::before {
+  position: absolute;
+  top: -76px;
+  right: clamp(18px, 7vw, 92px);
+  width: 220px;
+  height: 150px;
+  border-radius: 0 0 110px 110px;
+  background:
+    radial-gradient(circle at 24% 88%, #fff 0 18px, transparent 19px),
+    radial-gradient(circle at 49% 92%, #fff 0 28px, transparent 29px),
+    radial-gradient(circle at 78% 84%, #fff 0 22px, transparent 23px),
+    linear-gradient(#fffdf8, #f8efd2);
+  content: "";
+  opacity: 0.76;
+}
+
+.beerHeroCopy,
+.beerStoryPanel,
+.beerSectionHeader,
+.beerQuestion > div:first-child,
+.beerMetricReading > div:first-child,
+.beerFinding > div:first-child,
+.beerMethods > div:first-child {
+  max-width: 760px;
+}
+
+.beerHeroCopy {
+  justify-self: center;
+}
+
+.beerHero h1 {
+  max-width: 860px;
+  margin-bottom: 18px;
+  color: var(--beer-brown);
+  font-size: clamp(44px, 7vw, 96px);
+  letter-spacing: 0;
+  line-height: 0.98;
+}
+
+.beerHero .lead {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--beer-muted);
+}
+
+.beerHeroNote {
+  max-width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  color: var(--beer-muted);
+  font-size: clamp(16px, 1.65vw, 20px);
+  line-height: 1.75;
+}
+
+.beerKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--beer-orange);
+  font-size: 13px;
+  font-weight: 860;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.beerHero .beerKicker {
+  justify-content: center;
+}
+
+.beerKicker svg {
+  color: var(--beer-amber);
+}
+
+.beerPour {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 94px;
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, rgb(255 253 247 / 0.9), rgb(246 232 188 / 0.72)),
+    var(--beer-foam);
+  padding: 18px 20px;
+  color: var(--beer-brown);
+}
+
+.beerPour svg {
+  color: var(--beer-orange);
+}
+
+.beerPour span {
+  font-weight: 850;
+}
+
+.beerStat {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  border-top: 3px solid var(--beer-amber);
+  border-radius: 18px;
+  background: rgb(255 253 247 / 0.66);
+  padding: 18px;
+  text-align: left;
+}
+
+.beerStat span,
+.beerTermList strong,
+.beerMethodTags span {
+  color: var(--beer-orange);
+  font-size: 13px;
+  font-weight: 840;
+}
+
+.beerStat strong {
+  color: var(--beer-brown);
+  font-size: clamp(30px, 3.4vw, 48px);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.beerStat p {
+  margin: 0;
+  color: var(--beer-muted);
+  line-height: 1.5;
+}
+
+.beerSection {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.08fr);
+  gap: clamp(24px, 5vw, 62px);
+  align-items: start;
+  border-top: 1px solid color-mix(in srgb, var(--beer-line) 76%, transparent);
+  padding-top: clamp(32px, 5vw, 56px);
+}
+
+.beerSection h2,
+.beerRelated h2 {
+  max-width: 780px;
+  margin-bottom: 16px;
+  color: var(--beer-brown);
+  font-size: clamp(28px, 3.6vw, 48px);
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.beerSection p {
+  max-width: 760px;
+  color: var(--beer-muted);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.beerSectionHeader {
+  grid-column: 1 / -1;
+}
+
+.beerBackground {
+  align-items: center;
+}
+
+.beerScenario {
+  align-items: center;
+}
+
+.beerScenarioDiagram {
+  display: grid;
+  gap: 18px;
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgb(255 253 247 / 0.92), rgb(248 238 207 / 0.7)),
+    var(--beer-surface);
+  padding: clamp(18px, 3vw, 30px);
+  box-shadow:
+    inset 0 0 0 1px var(--beer-line),
+    0 18px 56px rgb(126 80 24 / 0.08);
+}
+
+.beerDemandPulse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 18px;
+  background: rgb(255 253 247 / 0.78);
+  padding: 14px 16px;
+}
+
+.beerDemandPulse span,
+.beerAmplifyBar span {
+  color: var(--beer-muted);
+  font-size: 13px;
+  font-weight: 780;
+}
+
+.beerDemandPulse strong {
+  color: var(--beer-brown);
+  font-size: clamp(20px, 3vw, 34px);
+  line-height: 1;
+}
+
+.beerScenarioNodes {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.beerScenarioNodes::before {
+  position: absolute;
+  top: 28px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--beer-amber), var(--beer-orange));
+  content: "";
+  opacity: 0.58;
+}
+
+.beerScenarioNode {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  min-height: 164px;
+  border-radius: 18px;
+  background: rgb(255 253 247 / 0.86);
+  padding: 16px;
+  box-shadow: inset 0 0 0 1px rgb(233 216 183 / 0.8);
+}
+
+.beerScenarioNode span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--beer-foam);
+  color: var(--beer-orange);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.beerScenarioNode strong {
+  color: var(--beer-brown);
+  font-size: 20px;
+}
+
+.beerScenarioNode p {
+  margin: 0;
+  color: var(--beer-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.beerAmplifyBar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgb(246 232 188 / 0.56), rgb(214 154 45 / 0.34), rgb(184 97 34 / 0.28));
+  padding: 9px 12px;
+  text-align: center;
+}
+
+.beerQuestion {
+  align-items: center;
+}
+
+.beerQuestionList {
+  display: grid;
+  gap: 12px;
+}
+
+.beerQuestionList div {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  border-radius: 18px;
+  background: rgb(255 253 247 / 0.68);
+  padding: 16px 18px;
+  box-shadow: inset 0 0 0 1px var(--beer-line);
+}
+
+.beerQuestionList span {
+  color: var(--beer-orange);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.beerQuestionList p {
+  margin: 0;
+  color: var(--beer-brown);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.beerStoryPanel {
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgb(255 253 247 / 0.92), rgb(248 238 207 / 0.7)),
+    var(--beer-surface);
+  padding: clamp(22px, 3vw, 34px);
+  box-shadow: inset 0 0 0 1px rgb(233 216 183 / 0.72);
+}
+
+.beerFactList {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.beerFactList span {
+  border-left: 3px solid var(--beer-amber);
+  background: rgb(255 253 247 / 0.64);
+  padding: 10px 12px;
+  color: var(--beer-brown);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.beerFlow,
+.beerFigureGrid,
+.beerTermList {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 16px;
+}
+
+.beerFlow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  counter-reset: beer-flow;
+}
+
+.beerFlowItem {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  min-height: 238px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgb(255 253 247 / 0.94), rgb(249 241 220 / 0.78)),
+    var(--beer-surface);
+  padding: 22px;
+  box-shadow: inset 0 0 0 1px var(--beer-line);
+}
+
+.beerFlowItem::after {
+  position: absolute;
+  top: 33px;
+  right: -18px;
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--beer-amber), transparent);
+  content: "";
+}
+
+.beerFlowItem:last-child::after {
+  display: none;
+}
+
+.beerFlowStep {
+  color: var(--beer-amber);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.beerFlowIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--beer-foam);
+  color: var(--beer-orange);
+}
+
+.beerFlowItem h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.beerFlowItem p,
+.beerTermList p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.beerMetricReading {
+  grid-template-columns: minmax(0, 0.72fr) minmax(320px, 1.28fr);
+}
+
+.beerTermList {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.beerTermList div {
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgb(255 253 247 / 0.9), rgb(247 235 203 / 0.58));
+  padding: 18px;
+  box-shadow: inset 0 0 0 1px var(--beer-line);
+}
+
+.beerFigureGrid {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+}
+
+.beerFigure {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--beer-line);
+  border-radius: 24px;
+  background: var(--beer-surface);
+  box-shadow: 0 18px 56px rgb(126 80 24 / 0.08);
+}
+
+.beerChainFrame {
+  padding: clamp(12px, 2vw, 20px);
+  background: #fff;
+}
+
+.beerFigure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.beerFigure figcaption {
+  display: grid;
+  gap: 6px;
+  border-top: 1px solid var(--beer-line);
+  padding: 16px 18px 18px;
+}
+
+.beerFigure figcaption strong {
+  color: var(--beer-brown);
+  font-size: 18px;
+}
+
+.beerFigure figcaption span {
+  color: var(--beer-muted);
+  line-height: 1.6;
+}
+
+.beerFinding {
+  align-items: center;
+  border-radius: 28px;
+  border-top: 0;
+  background:
+    radial-gradient(circle at 94% 10%, rgb(255 255 255 / 0.82), transparent 26%),
+    linear-gradient(120deg, rgb(255 253 247 / 0.84), rgb(246 230 187 / 0.58)),
+    var(--beer-bg);
+  padding: clamp(26px, 5vw, 48px);
+}
+
+.beerMethods {
+  grid-template-columns: minmax(0, 0.86fr) minmax(280px, 0.7fr);
+  align-items: center;
+}
+
+.beerMethodTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.beerMethodTags span {
+  border: 1px solid var(--beer-line);
+  border-radius: 999px;
+  background: var(--beer-foam);
+  padding: 10px 14px;
+}
+
+.beerRelated {
+  display: grid;
+  gap: 18px;
+  border-top: 1px solid var(--beer-line);
+  padding-top: 34px;
+}
+
+.beerRelated .miniWorkList a {
+  border-color: var(--beer-line);
+  background: rgb(255 253 247 / 0.74);
+  color: var(--beer-muted);
+}
+
+.wechatCasePage {
+  --wechat-bg: #f3f7f2;
+  --wechat-surface: #ffffff;
+  --wechat-soft: #e4f2e8;
+  --wechat-line: #cfe0d3;
+  --wechat-green: #2f8f5b;
+  --wechat-deep: #153324;
+  --wechat-muted: #5e7468;
+  --wechat-shadow: 0 24px 80px rgb(37 87 58 / 0.12);
+  display: grid;
+  gap: clamp(40px, 6vw, 76px);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background:
+    radial-gradient(circle at 1px 1px, rgb(21 51 36 / 0.07) 1px, transparent 0),
+    linear-gradient(180deg, #f8fbf7 0%, var(--wechat-bg) 52%, #f5f9f4 100%);
+  background-size: 20px 20px, 100% 100%;
+  color: var(--wechat-deep);
+}
+
+.wechatCasePage > .backLink,
+.wechatHero,
+.wechatSection,
+.wechatRelated {
+  width: min(100%, 1360px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wechatCasePage > .backLink {
+  color: var(--wechat-muted);
+}
+
+.wechatHero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(300px, 0.56fr);
+  gap: clamp(28px, 5vw, 62px);
+  align-items: center;
+  border: 1px solid var(--wechat-line);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 92% 12%, rgb(228 242 232 / 0.92), transparent 34%),
+    linear-gradient(145deg, rgb(255 255 255 / 0.98), rgb(234 245 237 / 0.86));
+  padding: clamp(34px, 6vw, 72px);
+  box-shadow: var(--wechat-shadow);
+}
+
+.wechatHero h1 {
+  max-width: 840px;
+  margin-bottom: 18px;
+  color: var(--wechat-deep);
+  font-size: clamp(44px, 7vw, 96px);
+  letter-spacing: 0;
+  line-height: 0.98;
+}
+
+.wechatHero .lead {
+  max-width: 760px;
+  color: var(--wechat-muted);
+}
+
+.wechatKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--wechat-green);
+  font-size: 13px;
+  font-weight: 860;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wechatKicker svg {
+  color: var(--wechat-green);
+}
+
+.wechatPhoneMock {
+  display: grid;
+  gap: 12px;
+  border-radius: 30px;
+  background: #f8fbf7;
+  padding: 18px;
+  box-shadow:
+    inset 0 0 0 1px var(--wechat-line),
+    0 18px 50px rgb(37 87 58 / 0.12);
+}
+
+.wechatPhoneTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid var(--wechat-line);
+  padding-bottom: 12px;
+  color: var(--wechat-deep);
+  font-weight: 860;
+}
+
+.wechatPhoneTop strong {
+  color: var(--wechat-green);
+  font-size: 12px;
+}
+
+.wechatBubble {
+  max-width: 88%;
+  border-radius: 18px;
+  padding: 12px 14px;
+  color: var(--wechat-deep);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.wechatBubble.left {
+  justify-self: start;
+  background: #ffffff;
+}
+
+.wechatBubble.right {
+  justify-self: end;
+  background: var(--wechat-soft);
+}
+
+.wechatBubble.muted {
+  color: var(--wechat-muted);
+}
+
+.wechatSection {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.08fr);
+  gap: clamp(24px, 5vw, 62px);
+  align-items: start;
+  border-top: 1px solid color-mix(in srgb, var(--wechat-line) 80%, transparent);
+  padding-top: clamp(32px, 5vw, 56px);
+}
+
+.wechatSection h2,
+.wechatRelated h2 {
+  max-width: 780px;
+  margin-bottom: 16px;
+  color: var(--wechat-deep);
+  font-size: clamp(28px, 3.6vw, 48px);
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.wechatSection p {
+  max-width: 760px;
+  color: var(--wechat-muted);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.wechatSectionHeader {
+  grid-column: 1 / -1;
+  max-width: 820px;
+}
+
+.wechatScenario,
+.wechatArchitecture,
+.wechatBoundaries,
+.wechatNext {
+  align-items: center;
+}
+
+.wechatFlowDiagram {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  border-radius: 26px;
+  background: rgb(255 255 255 / 0.82);
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow:
+    inset 0 0 0 1px var(--wechat-line),
+    0 18px 56px rgb(37 87 58 / 0.08);
+}
+
+.wechatFlowDiagram div {
+  min-height: 96px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff, var(--wechat-soft));
+  color: var(--wechat-deep);
+  padding: 14px;
+  text-align: center;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.wechatFlowDiagram span {
+  height: 2px;
+  background: linear-gradient(90deg, var(--wechat-green), transparent);
+}
+
+.wechatWorkflowGrid,
+.wechatPlaceholderGrid,
+.wechatTermList {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 16px;
+}
+
+.wechatWorkflowGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wechatWorkflowGrid article {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-height: 238px;
+  border-radius: 22px;
+  background: rgb(255 255 255 / 0.78);
+  padding: 22px;
+  box-shadow: inset 0 0 0 1px var(--wechat-line);
+}
+
+.wechatWorkflowGrid svg {
+  color: var(--wechat-green);
+}
+
+.wechatWorkflowGrid h3 {
+  margin: 0;
+  color: var(--wechat-deep);
+  font-size: 22px;
+}
+
+.wechatWorkflowGrid p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.wechatStack {
+  display: grid;
+  gap: 10px;
+}
+
+.wechatStack div {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.78);
+  padding: 14px 16px;
+  box-shadow: inset 0 0 0 1px var(--wechat-line);
+}
+
+.wechatStack span {
+  color: var(--wechat-green);
+  font-weight: 900;
+}
+
+.wechatStack strong {
+  color: var(--wechat-deep);
+}
+
+.wechatBoundaryList {
+  display: grid;
+  gap: 12px;
+}
+
+.wechatBoundaryList div {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.78);
+  padding: 14px 16px;
+  color: var(--wechat-deep);
+  line-height: 1.65;
+  box-shadow: inset 0 0 0 1px var(--wechat-line);
+}
+
+.wechatBoundaryList svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--wechat-green);
+}
+
+.wechatPlaceholderGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wechatPlaceholder {
+  overflow: hidden;
+  margin: 0;
+  border-radius: 24px;
+  background: var(--wechat-surface);
+  box-shadow:
+    inset 0 0 0 1px var(--wechat-line),
+    0 18px 56px rgb(37 87 58 / 0.08);
+}
+
+.wechatPlaceholder > div {
+  display: grid;
+  min-height: 210px;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgb(228 242 232 / 0.9), rgb(255 255 255 / 0.72)),
+    repeating-linear-gradient(135deg, transparent 0 10px, rgb(47 143 91 / 0.07) 10px 12px);
+}
+
+.wechatPlaceholder > div span {
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.86);
+  padding: 10px 14px;
+  color: var(--wechat-green);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.wechatPlaceholder figcaption {
+  display: grid;
+  gap: 6px;
+  border-top: 1px solid var(--wechat-line);
+  padding: 16px 18px 18px;
+}
+
+.wechatPlaceholder figcaption strong {
+  color: var(--wechat-deep);
+  font-size: 18px;
+}
+
+.wechatPlaceholder figcaption p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.wechatMethodTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.wechatMethodTags span {
+  border: 1px solid var(--wechat-line);
+  border-radius: 999px;
+  background: var(--wechat-soft);
+  padding: 10px 14px;
+  color: var(--wechat-green);
+  font-size: 13px;
+  font-weight: 840;
+}
+
+.wechatRelated {
+  display: grid;
+  gap: 18px;
+  border-top: 1px solid var(--wechat-line);
+  padding-top: 34px;
+}
+
+.wechatRelated .miniWorkList a {
+  border-color: var(--wechat-line);
+  background: rgb(255 255 255 / 0.76);
+  color: var(--wechat-muted);
+}
+
+.seedingCasePage {
+  --seeding-bg: #f8f4f1;
+  --seeding-surface: #fffdfb;
+  --seeding-ink: #2b2022;
+  --seeding-muted: #746568;
+  --seeding-line: #eadbd8;
+  --seeding-accent: #bd435c;
+  --seeding-accent-strong: #8f2438;
+  --seeding-soft: #f6e5e5;
+  --seeding-warm: #f3d8b9;
+  --seeding-shadow: 0 24px 78px rgb(116 60 66 / 0.12);
+  display: grid;
+  gap: clamp(40px, 6vw, 76px);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background-color: var(--seeding-bg);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgb(43 32 34 / 0.055) 1px, transparent 0),
+    linear-gradient(180deg, #fffaf5 0%, var(--seeding-bg) 48%, #fbf5f1 100%);
+  background-size: 22px 22px, 100% 100%;
+  color: var(--seeding-ink);
+}
+
+.seedingCasePage > .backLink,
+.seedingHero,
+.seedingSection,
+.seedingRelated {
+  width: min(100%, 1360px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.seedingCasePage > .backLink {
+  color: var(--seeding-muted);
+}
+
+.seedingHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 66px);
+  align-items: center;
+  border: 1px solid var(--seeding-line);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 92% 8%, rgb(246 229 229 / 0.96), transparent 34%),
+    linear-gradient(145deg, rgb(255 253 251 / 0.98), rgb(247 233 225 / 0.84));
+  padding: clamp(34px, 6vw, 72px);
+  box-shadow: var(--seeding-shadow);
+}
+
+.seedingHeroCopy {
+  max-width: 820px;
+  justify-self: center;
+  text-align: center;
+}
+
+.seedingHero h1 {
+  max-width: 860px;
+  margin-bottom: 18px;
+  color: var(--seeding-ink);
+  font-size: clamp(42px, 6.4vw, 86px);
+  letter-spacing: 0;
+  line-height: 1.02;
+}
+
+.seedingHero .lead {
+  max-width: 760px;
+  margin-bottom: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--seeding-accent-strong);
+  font-weight: 760;
+}
+
+.seedingHeroNote {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  color: var(--seeding-muted);
+  font-size: clamp(16px, 1.45vw, 19px);
+  line-height: 1.8;
+}
+
+.seedingKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--seeding-accent);
+  font-size: 13px;
+  font-weight: 860;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.seedingKicker svg {
+  color: var(--seeding-accent);
+}
+
+.seedingActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.seedingButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--seeding-line);
+  border-radius: 999px;
+  background: rgb(255 253 251 / 0.78);
+  padding: 0 18px;
+  color: var(--seeding-ink);
+  font-weight: 820;
+  white-space: nowrap;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.seedingButton.primary {
+  border-color: var(--seeding-accent);
+  background: var(--seeding-accent);
+  color: #ffffff;
+}
+
+.seedingButton:hover {
+  border-color: var(--seeding-accent);
+  transform: translateY(-1px);
+}
+
+.seedingReportCard {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--seeding-line);
+  border-radius: 24px;
+  background: var(--seeding-surface);
+  box-shadow:
+    0 18px 56px rgb(116 60 66 / 0.11),
+    inset 0 0 0 8px rgb(255 253 251 / 0.82);
+}
+
+.seedingReportCard img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.seedingReportCard figcaption {
+  border-top: 1px solid var(--seeding-line);
+  padding: 14px 16px;
+  color: var(--seeding-muted);
+  font-size: 13px;
+  font-weight: 760;
+  text-align: center;
+}
+
+.seedingSection {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.08fr);
+  gap: clamp(24px, 5vw, 62px);
+  align-items: start;
+  border-top: 1px solid color-mix(in srgb, var(--seeding-line) 84%, transparent);
+  padding-top: clamp(32px, 5vw, 56px);
+}
+
+.seedingSection h2,
+.seedingRelated h2 {
+  max-width: 780px;
+  margin-bottom: 16px;
+  color: var(--seeding-ink);
+  font-size: clamp(28px, 3.6vw, 48px);
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.seedingSection p {
+  max-width: 770px;
+  color: var(--seeding-muted);
+  font-size: 17px;
+  line-height: 1.82;
+}
+
+.seedingSectionHeader {
+  grid-column: 1 / -1;
+  max-width: 830px;
+}
+
+.seedingContext,
+.seedingValidation,
+.seedingOutput,
+.seedingRole {
+  align-items: center;
+}
+
+.seedingMaterials {
+  align-items: center;
+  border-top: 0;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 94% 10%, rgb(255 253 251 / 0.92), transparent 28%),
+    linear-gradient(135deg, rgb(255 253 251 / 0.86), rgb(246 229 229 / 0.58));
+  padding: clamp(24px, 5vw, 48px);
+  box-shadow: inset 0 0 0 1px var(--seeding-line);
+}
+
+.seedingMaterials .seedingButton {
+  margin-top: 8px;
+}
+
+.seedingInputBoard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgb(255 253 251 / 0.9), rgb(246 229 229 / 0.58)),
+    var(--seeding-surface);
+  padding: clamp(18px, 3vw, 30px);
+  box-shadow:
+    inset 0 0 0 1px var(--seeding-line),
+    0 18px 56px rgb(116 60 66 / 0.08);
+}
+
+.seedingInputBoard span,
+.seedingRoleList span {
+  border: 1px solid var(--seeding-line);
+  border-radius: 999px;
+  background: rgb(255 253 251 / 0.82);
+  padding: 10px 14px;
+  color: var(--seeding-accent-strong);
+  font-size: 14px;
+  font-weight: 820;
+}
+
+.seedingFlowGrid,
+.seedingCaseSteps {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 16px;
+}
+
+.seedingFlowGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.seedingFlowGrid article {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-height: 246px;
+  border-radius: 22px;
+  background: rgb(255 253 251 / 0.78);
+  padding: 22px;
+  box-shadow: inset 0 0 0 1px var(--seeding-line);
+}
+
+.seedingFlowGrid article > span {
+  color: var(--seeding-accent);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.seedingFlowGrid svg,
+.seedingOutputPanel svg {
+  color: var(--seeding-accent);
+}
+
+.seedingFlowGrid h3 {
+  margin: 0;
+  color: var(--seeding-ink);
+  font-size: 22px;
+}
+
+.seedingFlowGrid p,
+.seedingCaseSteps p,
+.seedingOutputPanel p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.seedingCaseSteps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.seedingCaseSteps article {
+  display: grid;
+  gap: 10px;
+  min-height: 210px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgb(255 253 251 / 0.88), rgb(247 232 226 / 0.66));
+  padding: 22px;
+  box-shadow: inset 0 0 0 1px var(--seeding-line);
+}
+
+.seedingCaseSteps span {
+  color: var(--seeding-accent);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.seedingCaseSteps h3,
+.seedingOutputPanel strong {
+  margin: 0;
+  color: var(--seeding-ink);
+  font-size: 20px;
+}
+
+.seedingOutputPanel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.seedingOutputPanel div {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-height: 176px;
+  border-radius: 20px;
+  background: rgb(255 253 251 / 0.76);
+  padding: 20px;
+  box-shadow: inset 0 0 0 1px var(--seeding-line);
+}
+
+.seedingRoleList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.seedingRelated {
+  display: grid;
+  gap: 18px;
+  border-top: 1px solid var(--seeding-line);
+  padding-top: 34px;
+}
+
+.seedingRelated .miniWorkList a {
+  border-color: var(--seeding-line);
+  background: rgb(255 253 251 / 0.76);
+  color: var(--seeding-muted);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .heroCopy,
   .heroVisual,
@@ -647,6 +1912,84 @@ h1 span {
   .caseAside {
     position: static;
   }
+
+  .beerHero,
+  .beerSection,
+  .beerMethods,
+  .beerMetricReading,
+  .wechatHero,
+  .wechatSection,
+  .wechatArchitecture,
+  .wechatBoundaries,
+  .wechatNext,
+  .seedingHero,
+  .seedingSection,
+  .seedingContext,
+  .seedingValidation,
+  .seedingOutput,
+  .seedingRole {
+    grid-template-columns: 1fr;
+  }
+
+  .beerFlow,
+  .beerFigureGrid,
+  .beerTermList,
+  .beerScenarioNodes,
+  .beerAmplifyBar,
+  .wechatWorkflowGrid,
+  .wechatPlaceholderGrid,
+  .seedingFlowGrid,
+  .seedingCaseSteps,
+  .seedingOutputPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .wechatFlowDiagram {
+    grid-template-columns: 1fr;
+  }
+
+  .wechatFlowDiagram span {
+    width: 2px;
+    height: 18px;
+    justify-self: center;
+    background: linear-gradient(180deg, var(--wechat-green), transparent);
+  }
+
+  .wechatWorkflowGrid article {
+    min-height: auto;
+  }
+
+  .seedingFlowGrid article,
+  .seedingCaseSteps article,
+  .seedingOutputPanel div {
+    min-height: auto;
+  }
+
+  .beerScenarioNodes::before {
+    display: none;
+  }
+
+  .beerScenarioNode {
+    min-height: auto;
+  }
+
+  .beerDemandPulse {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .beerAmplifyBar {
+    border-radius: 18px;
+    text-align: left;
+  }
+
+  .beerFlowItem {
+    min-height: auto;
+  }
+
+  .beerFlowItem::after {
+    display: none;
+  }
 }
 
 @media (max-width: 620px) {
@@ -675,7 +2018,9 @@ h1 span {
 
   .button,
   .aboutActions,
-  .heroActions {
+  .heroActions,
+  .seedingActions,
+  .seedingButton {
     width: 100%;
   }
 
