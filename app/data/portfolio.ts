@@ -37,13 +37,13 @@ export type Practice = {
 export const profile = {
   name: "黄炫铭",
   nameEn: "Huang Xuanming",
-  title: "Product thinking, AI prototypes, and systems experiments.",
+  title: "产品分析、AI 原型与系统实验",
   summary:
-    "我关注 AI 产品、自动化工作流、复杂系统体验和可运行原型。这个站点记录我如何把想法拆成问题、界面、代码和可验证的作品。",
-  email: "hello@example.com",
-  github: "https://github.com/Huangxuanming0911/ai-product",
+    "这里收录一些可以打开、可以追问的个人项目：内容工具、供应链实验、扑克 AI 和微信 Agent。",
+  email: "2519453845@qq.com",
+  phone: "13646985482",
   resumeHref: "/resume/",
-  focus: ["AI prototypes", "Workflow tools", "Systems thinking"]
+  focus: ["内容工具", "决策实验", "游戏 AI", "微信 Agent"]
 };
 
 export const works: Work[] = [
@@ -51,7 +51,7 @@ export const works: Work[] = [
     slug: "seeding-copilot",
     title: "种草文案优化 Copilot",
     label: "Content AI MVP",
-    summary: "把广告感商单草稿，改成有证据、有边界、可拍摄的种草内容。",
+    summary: "面向商单种草的内容优化工具，把夸张卖点转成可验证、可拍摄、可发布的内容方案。",
     role: "产品机会验证、MVP 原型设计、前端 Demo、Coze 工作流、案例验证",
     status: "Online MVP / Case Study",
     tags: ["AI Product", "Content AI", "MVP", "Coze Workflow"],
@@ -79,7 +79,7 @@ export const works: Work[] = [
     slug: "beergame-dqn",
     title: "Beer Game Decision Lab",
     label: "Decision Analysis Prototype",
-    summary: "一个围绕供应链多主体决策的实验分析项目，比较局部策略、全链路利润与成本传递。",
+    summary: "将供应链补货游戏做成决策实验，观察不同策略如何影响节点利润、服务水平和订单波动。",
     role: "系统建模、指标设计、实验分析、可视化表达",
     status: "产品化实验原型",
     tags: ["Supply Chain", "Multi-Agent", "Profit Metrics", "Python"],
@@ -107,7 +107,7 @@ export const works: Work[] = [
     slug: "wechat-bot",
     title: "WeChat Bot / IM Agent",
     label: "AI Agent Workflow",
-    summary: "一个把微信 IM 接入 Agent 工作流的工程实践，关注触发边界、上下文记忆、多模型路由和本地数据读取。",
+    summary: "把微信消息接入多模型 Agent，梳理真实 IM 场景里的触发、上下文、记忆和误回复边界。",
     role: "工作流梳理、交互边界设计、Agent 入口分析",
     status: "IM Agent 实践案例",
     tags: ["Wechaty", "IM Agent", "OpenCLI", "LLM Routing"],
@@ -132,88 +132,67 @@ export const works: Work[] = [
       "补充真实截图、配置片段和一次完整消息链路，把它整理成 IM Agent 进入社交场景的系统案例。"
   },
   {
-    slug: "wcf-bridge",
-    title: "WCF Bridge",
-    label: "Local Service Bridge",
-    summary: "为微信媒体后端做一个本地 HTTP 桥接服务，统一消息和表情数据的响应形态。",
-    role: "接口整理、本地服务、响应标准化",
-    status: "小型工具 / 本地桥接",
-    tags: ["Node.js", "HTTP", "Bridge", "WeChatFerry"],
+    slug: "poker-ai",
+    title: "Texas Hold'em Poker AI",
+    label: "Game AI System",
+    summary: "一个能真实对局的德州扑克 Heads-up 系统：规则引擎管牌局，AI 在不完全信息里做下注决策。",
+    role: "规则引擎实现、AI 策略设计、Web 对战 UI、训练流程整理",
+    status: "Interactive Web Demo / Open Source",
+    tags: ["Poker AI", "Flask", "Monte Carlo", "Opponent Modeling"],
     overview:
-      "这是一个本地 HTTP bridge，用来连接 WeChatFerry 或 wxhelper 风格的媒体后端。它接收 bot 侧 payload，转发到 upstream，再把常见响应结构归一化。",
+      "这个项目从零实现了一个德州扑克 Heads-up 对战系统：玩家可以在 Web UI 里与 AI 实时对局，系统负责发牌、盲注轮换、下注轮、摊牌结算、行动日志和结果展示。它不是只摆出一张牌桌，而是真的把一手牌从开始打到结算。",
     why:
-      "这类小工具不大，但很关键。它把不稳定的上游形态包在稳定接口后面，让主项目可以少关心细碎差异。",
+      "德州扑克的难点在于信息不完整：你不知道对手底牌，却必须下注、弃牌或加注。这个项目的看点在于把这种“不知道也要决策”的过程系统化：规则必须严格，AI 需要在牌力、位置、底池赔率、对手范围和历史行为之间做动态判断。",
     built: [
-      "定义本地 POST 接口和 health check",
-      "支持 upstream token 和认证 header",
-      "兼容 dataUrl、base64、filePath、url 等响应形态",
-      "为 bot 侧提供更稳定的媒体读取边界"
+      "用 Python 实现德州扑克核心引擎，覆盖手牌评估、公共牌流程、大小盲轮换、下注校验和分池结算，先保证牌局不会“耍赖”",
+      "构建 AdvancedPokerAI，结合 Monte Carlo 胜率估计、起手牌强度、对手范围、fold equity 和 SPR 做决策",
+      "加入对手画像模块，统计 VPIP、PFR、AF、fold-to-cbet、WTSD 等指标并用于调整策略",
+      "使用 CMA-ES 自博弈训练可调策略参数，训练结果持久化到 data/ai_params.json 并在启动时加载",
+      "提供 Flask Web UI，支持中英文切换、玩家 vs AI、同机双人、可视化牌桌、行动日志和结算抽屉"
     ],
-    stack: ["Node.js", "HTTP API", "Local Bridge", "Media Payload"],
-    evidence: ["README 接口说明", "healthz 健康检查", "多响应形态归一化", "可配置 upstream"],
-    nextStep:
-      "补充错误码、超时策略和最小测试集，让它更像一个可以长期维护的小型基础设施组件。"
-  },
-  {
-    slug: "portfolio-site",
-    title: "Portfolio Site",
-    label: "Personal Website",
-    summary: "用 Next.js 搭建个人作品集，并适配国内静态托管平台的自动部署流程。",
-    role: "信息架构、前端实现、静态部署",
-    status: "当前站点 / 持续迭代",
-    tags: ["Next.js", "Static Export", "EdgeOne Pages", "Portfolio"],
-    overview:
-      "这个站点从 AI 产品求职页改造成个人作品集主页，重点展示作品、实践方向、笔记和个人简介，同时保持国内平台可部署。",
-    why:
-      "作品集本身也是一个产品。它需要在第一屏解释身份，在项目区建立可信度，在详情页提供可追问的上下文。",
-    built: [
-      "搭建静态导出的 Next.js 项目",
-      "适配 EdgeOne Pages 的 build command 和 out 输出目录",
-      "抽取作品、实践、笔记数据结构",
-      "规划作品详情页和持续更新流程"
+    stack: [
+      "Python",
+      "Flask",
+      "JavaScript",
+      "Monte Carlo Simulation",
+      "CMA-ES",
+      "Opponent Modeling",
+      "JSONL Logging"
     ],
-    stack: ["Next.js", "React", "TypeScript", "CSS", "Static Export"],
-    evidence: ["首页信息架构", "作品详情页骨架", "国内部署说明", "Git 自动部署流程"],
+    evidence: [
+      "GitHub：https://github.com/Huangxuanming0911/poker",
+      "已补充模式选择、牌桌对局和翻牌阶段截图",
+      "核心引擎：engine.py 处理发牌、下注轮、all-in、摊牌和分池",
+      "AI 策略：advanced_ai.py 根据胜率、位置、SPR、pot odds 和 fold equity 选择 fold / call / raise / all-in",
+      "训练流程：train.py 使用 CMA-ES 和 self-play opponent pool 训练参数",
+      "Web 入口：server.py 用 Flask session 包装同步游戏引擎，static/ 提供中英文牌桌界面",
+      "当前展示方式：用截图证明可交互版本已经跑通，在线试玩后续再上服务器"
+    ],
     nextStep:
-      "继续补真实截图、线上 Demo、文章链接和每个项目的复盘，让它从展示页变成完整作品档案。"
+      "继续补充典型牌局复盘和训练曲线，把 AI 在关键行动点的判断过程讲得更直观。"
   }
 ];
 
 export const practices: Practice[] = [
   {
     title: "Product Systems",
-    copy: "把模糊问题拆成场景、流程、指标和可迭代的产品结构。",
+    copy: "从具体场景出发，拆出流程、约束和判断指标。",
     icon: StackSimple
   },
   {
     title: "AI Prototyping",
-    copy: "用 LLM、RAG、Agent 和自动化工具快速验证产品想法。",
+    copy: "用 LLM、Agent 和自动化工具做可运行的早期验证。",
     icon: Sparkle
   },
   {
     title: "Interface Thinking",
-    copy: "关注复杂能力如何通过界面、反馈和约束变得可理解。",
+    copy: "把复杂能力放进界面、反馈和边界里，让人能理解和使用。",
     icon: Circuitry
   },
   {
     title: "Engineering Taste",
-    copy: "把想法落到可运行、可部署、可维护的系统里。",
+    copy: "让想法最终落到可运行、可部署、可维护的系统里。",
     icon: GitBranch
-  }
-];
-
-export const notes = [
-  {
-    title: "我如何判断一个 AI 功能是否真的需要存在",
-    summary: "从用户任务、失败成本和可评估性出发，而不是从模型能力出发。"
-  },
-  {
-    title: "RAG 产品里引用为什么比回答更重要",
-    summary: "当答案不可完全信任时，引用、权限和追溯链路就是产品体验的一部分。"
-  },
-  {
-    title: "从 Beer Game 到供应链智能体",
-    summary: "一个关于延迟反馈、局部收益和多智能体协同的系统实验笔记。"
   }
 ];
 

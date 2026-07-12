@@ -2,8 +2,7 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
-  EnvelopeSimple,
-  GithubLogo
+  EnvelopeSimple
 } from "@phosphor-icons/react/dist/ssr";
 import { profile, resumeBlocks, works } from "../data/portfolio";
 
@@ -25,10 +24,6 @@ export default function ResumePage() {
           <a className="button primary" href={`mailto:${profile.email}`}>
             联系我
             <EnvelopeSimple size={18} weight="bold" />
-          </a>
-          <a className="button secondary" href={profile.github} target="_blank">
-            GitHub
-            <GithubLogo size={18} weight="bold" />
           </a>
         </div>
       </section>

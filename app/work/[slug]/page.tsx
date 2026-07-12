@@ -81,6 +81,10 @@ export default async function WorkPage({ params }: WorkPageProps) {
     return <SeedingCopilotCase otherWorks={otherWorks} work={work} />;
   }
 
+  if (work.slug === "poker-ai") {
+    return <PokerCase otherWorks={otherWorks} work={work} />;
+  }
+
   return (
     <main className="casePage">
       <Link className="backLink" href="/#work">
@@ -139,52 +143,50 @@ function SeedingCopilotCase({
 }) {
   const productFlow = [
     {
-      title: "诊断广告感",
-      body: "标出“闭眼入、必买、不伤眼、无频闪”等容易被追问的绝对化表达。",
+      title: "识别表达风险",
+      body: "先把过度承诺、空泛形容和未经解释的功效词标出来，避免后续只是把语气改得更漂亮。",
       icon: MagnifyingGlass
     },
     {
-      title: "提炼用户疑虑",
-      body: "从评论、问大家和社区讨论里整理真实问题：会不会累、频闪怎么看、适不适合长期用。",
+      title: "提炼真实疑问",
+      body: "从评论、问答和社区反馈里整理用户真正会追问的点，比如是否适合长期用、依据来自哪里。",
       icon: ClipboardText
     },
     {
-      title: "匹配证据来源",
-      body: "把卖点对应到用户评价、商品参数、科普信息或需要补拍的画面。",
+      title: "匹配证据材料",
+      body: "把卖点对应到商品参数、用户反馈、科普信息或可补拍画面，判断哪些能保留、哪些要降调。",
       icon: MagicWand
     },
     {
-      title: "生成发布建议",
-      body: "输出改写稿、分镜建议、评论区回应方向，并做发布前自检。",
+      title: "形成发布方案",
+      body: "根据平台和使用场景，输出正文改写、脚本分镜、评论区回应和发布前检查项。",
       icon: ShieldCheck
     }
   ];
 
   const inputs = [
     "商品信息",
-    "目标平台",
-    "目标人群",
-    "已有草稿",
-    "用户疑虑",
-    "商品证据",
-    "禁用表达"
+    "平台/人群",
+    "原始草稿",
+    "评论反馈",
+    "证据材料"
   ];
 
   const caseSteps = [
     {
-      label: "01 输入",
-      title: "原始商单草稿",
-      body: "选择这个品类，是因为它很容易写成“护眼神器”，但家长真正关心的是风险、依据和适用边界。"
+      label: "正文",
+      title: "卖点文案前后对比",
+      body: "把“护眼神器、闭眼入”这类高风险表达，改成带使用场景、依据和边界的正文版本。"
     },
     {
-      label: "02 分析",
-      title: "疑虑与证据整理",
-      body: "我把草稿里的卖点逐条拆开，对应到问大家、用户评价、社区吐槽和科普信息，判断哪些能保留、哪些要降调。"
+      label: "脚本",
+      title: "可拍摄的内容脚本",
+      body: "把抽象卖点拆成画面动作，例如开灯环境、孩子阅读姿势、亮度调节和家长观察点。"
     },
     {
-      label: "03 输出",
-      title: "发布前内容方案",
-      body: "最终输出不只是一篇改写稿，还包括拍摄分镜、评论区回应方向，以及发布前的质量检查。"
+      label: "评论",
+      title: "评论区回应方向",
+      body: "提前承接用户追问，给出更具体的回应口径，而不是只留下“可以放心使用”这类单薄回复。"
     }
   ];
 
@@ -211,11 +213,11 @@ function SeedingCopilotCase({
           </p>
           <h1>{work.title}</h1>
           <p className="lead">
-            一个把“硬广草稿”改成“可信种草”的小工具。
+            面向商单种草场景的证据驱动内容优化原型。
           </p>
           <p className="seedingHeroNote">
-            我把它想象成创作者发商单前的第二双眼睛：不急着润色，先帮你看哪里太像广告、
-            哪里缺证据、哪里容易被评论区追问。它做的不是“写得更猛”，而是把内容改得更稳、更像真实体验。
+            项目围绕广告感强、证据不足、表达边界不清等问题，搭建从草稿诊断到证据匹配、
+            低广告感改写和发布前评估的工作流，帮助商单内容从“卖点堆砌”转向更可信的发布方案。
           </p>
           <div className="seedingActions">
             <a
@@ -234,11 +236,16 @@ function SeedingCopilotCase({
       <section className="seedingSection seedingContext">
         <div>
           <p className="seedingKicker">01 项目背景</p>
-          <h2>商单文案为什么容易失信</h2>
+          <h2>真实感与评论区承接</h2>
           <p>
-            一篇典型的商单草稿，常常会把所有卖点都堆上去：好用、必买、不踩雷、适合所有人。
-            但用户读到这里时，脑子里冒出来的往往不是“我被种草了”，而是“真的吗？凭什么？”
-            所以我没有把方向定成单纯生成文案，而是做一个发布前的检查和改写工具。
+            在实际的商单种草作品里，问题往往不是“卖点不够多”，而是内容缺少真实使用感：
+            商品参数堆得很满，用户为什么会相信却没有被说清楚；正文能把产品夸出来，
+            评论区却只剩几句很薄的回应，接不住用户对效果、适用人群和使用风险的追问。
+          </p>
+          <p>
+            所以这个原型先把输入压缩成少数必要材料：商品信息、平台和人群、原始草稿、
+            评论反馈与证据材料。它不追求把关键词铺满，而是帮助创作者判断哪些话该保留、
+            哪些话需要证据，哪些内容应该转成脚本画面或评论区回应。
           </p>
         </div>
         <div className="seedingInputBoard" aria-label="种草 Copilot 输入结构">
@@ -250,12 +257,12 @@ function SeedingCopilotCase({
 
       <section className="seedingSection">
         <div className="seedingSectionHeader">
-          <p className="seedingKicker">02 解决思路</p>
-          <h2>先诊断，再改写</h2>
+          <p className="seedingKicker">02 证据链构建</p>
+          <h2>把卖点、疑问和依据对齐</h2>
           <p>
-            这套流程的核心很简单：先不要急着“优化语气”，而是先判断哪些话说得过满。
-            再把用户会问的问题列出来，补上能支撑的证据，最后才进入改写、分镜和评论区承接。
-            这样文案不只是变顺了，也更经得起看。
+            这套流程不是直接改写一篇更顺的文案，而是先把草稿里的主张拆开：
+            哪些是商品卖点，哪些是用户疑问，哪些需要参数、评价或画面来支撑。
+            证据链建立后，系统再决定表达应该保留、降调、补充说明，还是转成更适合拍摄的脚本。
           </p>
         </div>
         <div className="seedingFlowGrid">
@@ -271,16 +278,22 @@ function SeedingCopilotCase({
             );
           })}
         </div>
+        <figure className="seedingWorkflowFigure">
+          <img src="/images/seeding-copilot/workflow.png" alt="种草文案优化 Copilot 的 Coze 工作流截图" />
+          <figcaption>
+            Coze 工作流截图：从广告感诊断、用户疑虑与证据链、低广告感文案优化，到发布前质量评分和最终结果汇总。
+          </figcaption>
+        </figure>
       </section>
 
       <section className="seedingSection seedingValidation">
         <div>
-          <p className="seedingKicker">03 验证案例</p>
-          <h2>护眼学习台灯</h2>
+          <p className="seedingKicker">03 输出形式</p>
+          <h2>按不同需求生成可对比方案</h2>
           <p>
-            我用“护眼学习台灯”做验证，是因为这个品类特别容易暴露问题：一边是商家想强调护眼，
-            另一边是家长会追问频闪、亮度、孩子长期使用会不会累。这个案例能很好地测试工具是不是只会润色，
-            还是能真的帮人把内容说清楚。
+            我用“护眼学习台灯”做验证，是因为这个品类很容易同时触发卖点表达和信任质疑：
+            商家想强调护眼，家长会追问频闪、亮度和长期使用体验。这个案例更适合检验工具能不能
+            根据不同需求产出合适的文案、脚本和评论区回应，并让修改前后的变化可以被比较。
           </p>
         </div>
         <div className="seedingCaseSteps">
@@ -297,27 +310,28 @@ function SeedingCopilotCase({
       <section className="seedingSection seedingOutput">
         <div>
           <p className="seedingKicker">04 输出结果</p>
-          <h2>文案、分镜与自检</h2>
+          <h2>从草稿到发布材料</h2>
           <p>
-            我希望输出物更像一张发布前清单：哪些词要删，哪些卖点要加边界，哪些证据还不够，
-            哪些镜头可以补拍，评论区如果有人问“这真的护眼吗”，应该如何接住，而不是继续堆形容词。
+            输出结果不只是一版“更顺”的正文，而是一组可以进入发布准备的材料：
+            正文负责降低广告感，脚本负责把证据变成可拍画面，评论区回应负责承接用户追问。
+            这样修改前后的差异不只体现在措辞上，也体现在信息密度和可信度上。
           </p>
         </div>
         <div className="seedingOutputPanel">
           <div>
             <Target size={22} weight="bold" />
-            <strong>一版更稳的正文</strong>
-            <p>少一点绝对承诺，多一点具体使用场景。</p>
+            <strong>正文改写</strong>
+            <p>减少绝对承诺，补充适用场景、依据和表达边界。</p>
           </div>
           <div>
             <NotePencil size={22} weight="bold" />
-            <strong>能拍出来的分镜</strong>
-            <p>把“护眼、舒服、适合学习”变成画面动作。</p>
+            <strong>脚本分镜</strong>
+            <p>把“护眼、舒服、适合学习”转成能拍出来的动作和场景。</p>
           </div>
           <div>
             <PresentationChart size={22} weight="bold" />
-            <strong>发布前自检</strong>
-            <p>看广告感、证据感、边界和评论区承接。</p>
+            <strong>评论承接</strong>
+            <p>围绕常见疑问准备回应方向，避免评论区信息过薄。</p>
           </div>
         </div>
       </section>
@@ -410,26 +424,41 @@ function WeChatBotCase({
     "长期社交记忆默认本地保存，并由用户查看、删除或清除。"
   ];
 
-  const placeholders = [
+  const evidenceSamples = [
     {
-      title: "扫码登录与启动",
-      label: "Screenshot slot",
-      body: "后续放入微信扫码登录、CLI 启动或运行日志截图。"
+      title: "图片理解",
+      src: "/images/wechat-bot/sample-vision-cropped-redacted.jpg",
+      alt: "脱敏后的微信图片理解样例",
+      body: "群聊里直接发图并 @ bot，系统需要识别图片内容，同时保留引用关系和多人触发语境。"
     },
     {
-      title: "群聊上下文",
-      label: "Prompt slot",
-      body: "后续放入群聊历史注入 prompt 或 JSONL 消息片段。"
+      title: "文件理解",
+      src: "/images/wechat-bot/sample-file-redacted.jpg",
+      alt: "脱敏后的微信文件理解样例",
+      body: "文档作为消息进入聊天后，Agent 可以提取任务要求，输出可读摘要，而不是只处理纯文本问答。"
+    }
+  ];
+
+  const stackSteps = [
+    {
+      title: "Wechaty",
+      body: "接入微信，监听聊天消息。"
     },
     {
-      title: "白名单配置",
-      label: "Config slot",
-      body: "后续放入 ROOM_WHITELIST、ALIAS_WHITELIST、BOT_NAME 配置片段。"
+      title: "Message Store",
+      body: "保存上下文、引用和历史。"
     },
     {
-      title: "本地数据分析",
-      label: "CLI slot",
-      body: "后续放入 wx sessions、wx history、wx sns-search 或分析命令输出。"
+      title: "Command Router",
+      body: "判断触发条件，分发任务。"
+    },
+    {
+      title: "LLM Provider",
+      body: "调用不同模型或服务。"
+    },
+    {
+      title: "Chat Reply",
+      body: "把结果发回微信对话。"
     }
   ];
 
@@ -473,24 +502,19 @@ function WeChatBotCase({
             哪些消息可以触发，哪些上下文可以读取，回复应该交给哪个模型，以及用户如何管理长期记忆。
           </p>
         </div>
-        <div className="wechatFlowDiagram" aria-label="微信消息到 Agent 回复链路">
-          <div>微信扫码</div>
-          <span />
-          <div>Wechaty 收消息</div>
-          <span />
-          <div>路由与上下文</div>
-          <span />
-          <div>模型 / Pi 回复</div>
-        </div>
+        <figure className="wechatScenarioCapture">
+          <img src="/images/wechat-bot/sample-trigger-clean-redacted.jpg" alt="脱敏后的微信群聊长文本触发样例" />
+          <figcaption>群聊长文本触发：保留 @、引用和消息结构，隐藏群名与具体身份。</figcaption>
+        </figure>
       </section>
 
       <section className="wechatSection">
         <div className="wechatSectionHeader">
-          <p className="wechatKicker">Workflow</p>
+          <p className="wechatKicker">System</p>
           <h2>从消息入口到可控回复</h2>
           <p>
-            页面先把项目拆成四个核心模块：消息入口、触发权限、上下文记忆、模型路由。
-            这比只展示“能自动回复”更能说明 IM Agent 的工程边界。
+            项目可以拆成四个模块：接收微信消息，判断是否应该响应，构造上下文与记忆，
+            再把请求路由到指定模型或 Pi agent。核心不是“自动回复”，而是让回复发生在可控范围内。
           </p>
         </div>
         <div className="wechatWorkflowGrid">
@@ -505,23 +529,35 @@ function WeChatBotCase({
             );
           })}
         </div>
+        <div className="wechatStack">
+          {stackSteps.map((item, index) => (
+            <div key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item.title}</strong>
+              <p>{item.body}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="wechatSection wechatArchitecture">
-        <div>
-          <p className="wechatKicker">Architecture</p>
-          <h2>一条消息如何走完整个链路</h2>
+      <section className="wechatSection">
+        <div className="wechatSectionHeader">
+          <p className="wechatKicker">Evidence</p>
+          <h2>文本、图片和文件都在同一个 IM 场景里</h2>
           <p>
-            典型路径是：微信扫码登录后由 Wechaty 捕获消息，消息被记录到本地 JSONL，
-            再经过白名单、群聊触发和上下文构造，最后交给指定 provider 或 Pi agent 生成回复并发回 IM。
+            下面两张样例展示了更复杂的输入形态：图片识别和文件理解。它们都来自真实聊天界面，
+            已经隐去群名、头像和具体用户身份。
           </p>
         </div>
-        <div className="wechatStack">
-          {["Wechaty", "Message Store", "Command Router", "LLM Provider", "IM Reply"].map((item, index) => (
-            <div key={item}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{item}</strong>
-            </div>
+        <div className="wechatEvidenceGallery">
+          {evidenceSamples.map((item) => (
+            <figure className="wechatEvidenceCard" key={item.title}>
+              <img src={item.src} alt={item.alt} />
+              <figcaption>
+                <strong>{item.title}</strong>
+                <p>{item.body}</p>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>
@@ -541,45 +577,6 @@ function WeChatBotCase({
               <PlugsConnected size={20} weight="bold" />
               <span>{item}</span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="wechatSection">
-        <div className="wechatSectionHeader">
-          <p className="wechatKicker">Evidence</p>
-          <h2>后续截图与材料占位</h2>
-          <p>
-            这一版先保留视觉槽位，后续可以逐步替换为真实截图、配置片段、运行日志和一次完整消息链路。
-          </p>
-        </div>
-        <div className="wechatPlaceholderGrid">
-          {placeholders.map((item) => (
-            <figure className="wechatPlaceholder" key={item.title}>
-              <div>
-                <span>{item.label}</span>
-              </div>
-              <figcaption>
-                <strong>{item.title}</strong>
-                <p>{item.body}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      <section className="wechatSection wechatNext">
-        <div>
-          <p className="wechatKicker">Next</p>
-          <h2>把实践整理成可复盘案例</h2>
-          <p>
-            下一步适合补充三类证据：一次真实消息从微信进入 Agent 的链路截图、一组白名单和记忆配置片段、
-            以及群聊历史上下文如何影响回复质量的前后对比。
-          </p>
-        </div>
-        <div className="wechatMethodTags">
-          {work.stack.map((item) => (
-            <span key={item}>{item}</span>
           ))}
         </div>
       </section>
@@ -906,6 +903,240 @@ function BeerGameCase({
       </section>
 
       <section className="beerRelated">
+        <h2>Related work</h2>
+        <div className="miniWorkList">
+          {otherWorks.map((item) => (
+            <Link href={`/work/${item.slug}/`} key={item.slug}>
+              <span>{item.title}</span>
+              <ArrowRight size={17} weight="bold" />
+            </Link>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PokerCase({
+  otherWorks,
+  work
+}: {
+  otherWorks: typeof works;
+  work: NonNullable<ReturnType<typeof getWork>>;
+}) {
+  const systemBlocks = [
+    {
+      title: "规则引擎",
+      body: "先把游戏规则做硬：发牌、盲注、下注轮、all-in、摊牌和分池都由 Python 引擎统一处理，界面不替规则兜底。",
+      icon: Scales
+    },
+    {
+      title: "策略决策",
+      body: "AI 不是看见大牌就冲。它会综合胜率、位置、底池赔率、SPR 和 fold equity，再选择 fold / call / raise / all-in。",
+      icon: Robot
+    },
+    {
+      title: "对手建模",
+      body: "玩家不会总按教科书出牌。系统记录 VPIP、PFR、AF、fold-to-cbet 等指标，用行为反推对手范围。",
+      icon: Database
+    },
+    {
+      title: "离线训练",
+      body: "CMA-ES 负责离线调参，自博弈结果保存为 JSON；Web 和 CLI 只加载冠军参数，不把训练压力带进对局。",
+      icon: TrendUp
+    }
+  ];
+
+  const flow = [
+    {
+      title: "Game Engine",
+      body: "规则引擎生成牌局状态"
+    },
+    {
+      title: "Decision Context",
+      body: "整理底池、位置、可用动作"
+    },
+    {
+      title: "Advanced AI",
+      body: "估算胜率并选择行动"
+    },
+    {
+      title: "Flask Web UI",
+      body: "把结果反馈到牌桌界面"
+    }
+  ];
+
+  const highlights = [
+    "这不是一张会动的牌桌，而是一套从发牌到结算都能自洽运行的 heads-up 系统。",
+    "AI 决策没有停在固定 if-else，而是把胜率、收益、对手范围和历史风格放到同一张决策桌上。",
+    "训练和对局解耦：慢活交给离线 self-play，玩家看到的是已经加载好的策略版本。"
+  ];
+
+  const screens = [
+    {
+      title: "模式选择",
+      src: "/images/poker/poker-start.png",
+      alt: "德州扑克 AI 项目的模式选择页面截图"
+    },
+    {
+      title: "对局行动",
+      src: "/images/poker/poker-table.png",
+      alt: "玩家与 AI 对战的牌桌页面截图"
+    },
+    {
+      title: "翻牌阶段",
+      src: "/images/poker/poker-flop.png",
+      alt: "带公共牌和下注按钮的德州扑克对局截图"
+    }
+  ];
+
+  return (
+    <main className="casePage pokerCasePage">
+      <Link className="backLink" href="/#work">
+        <ArrowLeft size={18} weight="bold" />
+        返回作品
+      </Link>
+
+      <section className="pokerHero">
+        <div className="pokerHeroCopy">
+          <p className="pokerKicker">
+            <Target size={18} weight="bold" />
+            {work.label}
+          </p>
+          <h1>{work.title}</h1>
+          <p className="lead">{work.summary}</p>
+          <p className="pokerIntro">
+            德州扑克好玩的地方在于：你永远看不全牌，却必须做一个像样的决定。这个项目把这件事拆成两层：
+            底层是一套不讲情面的规则引擎，负责每一手牌的合法流程；上层是一套可训练的 AI 策略，
+            在牌力、位置、赔率和对手行为之间做取舍。
+          </p>
+          <div className="pokerActions">
+            <a
+              className="button primary"
+              href="https://github.com/Huangxuanming0911/poker"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+              <ArrowRight size={18} weight="bold" />
+            </a>
+            <a className="button secondary" href="#poker-system">
+              查看系统
+              <ArrowRight size={18} weight="bold" />
+            </a>
+          </div>
+        </div>
+        <div className="pokerTableVisual" aria-label="德州扑克 AI 对战示意">
+          <div className="pokerOpponent">AI stack 4820</div>
+          <div className="pokerBoard">
+            {["A♠", "K♥", "8♣", "4♦", "J♠"].map((card) => (
+              <span key={card}>{card}</span>
+            ))}
+          </div>
+          <div className="pokerPot">Pot 360</div>
+          <div className="pokerHand">
+            <span>Q♠</span>
+            <span>10♠</span>
+          </div>
+          <div className="pokerActionLog">
+            <span>equity 0.61</span>
+            <span>SPR 2.8</span>
+            <strong>raise 3x</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="pokerSection pokerScreens">
+        <div className="pokerSectionHeader">
+          <h2>界面截图</h2>
+          <p>
+            下面是实际运行界面：模式选择、实时牌桌、玩家行动按钮、公共牌和行动日志都已经跑通。
+            对一个扑克 AI 来说，最基本的诚意是牌局真的能打完。
+          </p>
+        </div>
+        <div className="pokerScreenGrid">
+          {screens.map((item) => (
+            <figure key={item.title}>
+              <img src={item.src} alt={item.alt} />
+              <figcaption>{item.title}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section id="poker-system" className="pokerSection">
+        <div className="pokerSectionHeader">
+          <h2>系统结构</h2>
+          <p>
+            我把“能玩起来”和“会做决策”分开处理：先让规则闭环可靠，再把可调策略接到同一个行动接口。
+            这样 AI 可以换，牌桌不会跟着散架。
+          </p>
+        </div>
+        <div className="pokerSystemGrid">
+          {systemBlocks.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.title}>
+                <Icon size={24} weight="bold" />
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="pokerSection pokerFlowSection">
+        <div className="pokerSectionHeader">
+          <h2>决策链路</h2>
+          <p>
+            每次轮到 AI 行动，引擎会打包可用动作、底池、下注额、位置、公共牌和对手快照。
+            AI 只负责在约束内做选择，不能凭空发明一个“不合规但很聪明”的动作。
+          </p>
+        </div>
+        <div className="pokerFlow">
+          {flow.map((item, index) => (
+            <div key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item.title}</strong>
+              <p>{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="pokerSection pokerEvidence">
+        <div>
+          <h2>可展示亮点</h2>
+          <ul>
+            {highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="pokerEvidenceGrid">
+          {work.evidence.slice(1).map((item) => (
+            <p key={item}>{item}</p>
+          ))}
+        </div>
+      </section>
+
+      <section className="pokerSection pokerRunbook">
+        <div>
+          <h2>运行方式</h2>
+          <p>本地启动后可以直接在浏览器里进行玩家 vs AI 对局，适合复现一手牌的完整流程。</p>
+        </div>
+        <pre>
+          <code>{`cd C:\\homework\\poker_github_repo
+.\\.venv\\Scripts\\activate
+python server.py
+
+# 训练 AI 参数
+python train.py --generations 5 --lambda 6 --hands 800 --workers 4`}</code>
+        </pre>
+      </section>
+
+      <section className="pokerRelated">
         <h2>Related work</h2>
         <div className="miniWorkList">
           {otherWorks.map((item) => (
