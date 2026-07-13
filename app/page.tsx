@@ -6,6 +6,7 @@ import {
   ReadCvLogo
 } from "@phosphor-icons/react/dist/ssr";
 import { practices, profile, works } from "./data/portfolio";
+import { withSiteBasePath } from "./utils/site-path";
 
 export default function Home() {
   return (
@@ -42,7 +43,7 @@ export default function Home() {
         </div>
         <div className="heroVisual">
           <Image
-            src="/images/hero-workbench.png"
+            src={withSiteBasePath("/images/hero-workbench.png")}
             alt="AI 产品与系统原型工作台"
             width={1400}
             height={875}

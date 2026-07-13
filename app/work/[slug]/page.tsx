@@ -26,6 +26,7 @@ import {
   TrendUp
 } from "@phosphor-icons/react/dist/ssr";
 import { getWork, works } from "../../data/portfolio";
+import { withSiteBasePath } from "../../utils/site-path";
 
 export const dynamicParams = false;
 
@@ -279,7 +280,7 @@ function SeedingCopilotCase({
           })}
         </div>
         <figure className="seedingWorkflowFigure">
-          <img src="/images/seeding-copilot/workflow.png" alt="种草文案优化 Copilot 的 Coze 工作流截图" />
+          <img src={withSiteBasePath("/images/seeding-copilot/workflow.png")} alt="种草文案优化 Copilot 的 Coze 工作流截图" />
           <figcaption>
             Coze 工作流截图：从广告感诊断、用户疑虑与证据链、低广告感文案优化，到发布前质量评分和最终结果汇总。
           </figcaption>
@@ -367,7 +368,7 @@ function SeedingCopilotCase({
           </a>
         </div>
         <figure className="seedingReportCard">
-          <img src="/images/seeding-copilot/report-preview.png" alt="种草文案优化 Copilot 一页报告预览" />
+          <img src={withSiteBasePath("/images/seeding-copilot/report-preview.png")} alt="种草文案优化 Copilot 一页报告预览" />
           <figcaption>One-page product report</figcaption>
         </figure>
       </section>
@@ -427,13 +428,13 @@ function WeChatBotCase({
   const evidenceSamples = [
     {
       title: "图片理解",
-      src: "/images/wechat-bot/sample-vision-cropped-redacted.jpg",
+      src: withSiteBasePath("/images/wechat-bot/sample-vision-cropped-redacted.jpg"),
       alt: "脱敏后的微信图片理解样例",
       body: "群聊里直接发图并 @ bot，系统需要识别图片内容，同时保留引用关系和多人触发语境。"
     },
     {
       title: "文件理解",
-      src: "/images/wechat-bot/sample-file-redacted.jpg",
+      src: withSiteBasePath("/images/wechat-bot/sample-file-redacted.jpg"),
       alt: "脱敏后的微信文件理解样例",
       body: "文档作为消息进入聊天后，Agent 可以提取任务要求，输出可读摘要，而不是只处理纯文本问答。"
     }
@@ -503,7 +504,7 @@ function WeChatBotCase({
           </p>
         </div>
         <figure className="wechatScenarioCapture">
-          <img src="/images/wechat-bot/sample-trigger-clean-redacted.jpg" alt="脱敏后的微信群聊长文本触发样例" />
+          <img src={withSiteBasePath("/images/wechat-bot/sample-trigger-clean-redacted.jpg")} alt="脱敏后的微信群聊长文本触发样例" />
           <figcaption>群聊长文本触发：保留 @、引用和消息结构，隐藏群名与具体身份。</figcaption>
         </figure>
       </section>
@@ -674,25 +675,25 @@ function BeerGameCase({
   const figures = [
     {
       title: "利润分解",
-      src: "/images/beergame/reward_decomposition.png",
+      src: withSiteBasePath("/images/beergame/reward_decomposition.png"),
       alt: "各企业利润分解图",
       caption: "把最终结果拆开，看收入和几类成本分别把利润推向哪里。"
     },
     {
       title: "长链路压力测试",
-      src: "/images/beergame/chain_length_heatmap.png",
+      src: withSiteBasePath("/images/beergame/chain_length_heatmap.png"),
       alt: "长链路压力测试热力图",
       caption: "当企业节点从 3 个扩到 5、7 个，压力开始在不同位置堆积。"
     },
     {
       title: "需求稳健性",
-      src: "/images/beergame/demand_robustness.png",
+      src: withSiteBasePath("/images/beergame/demand_robustness.png"),
       alt: "不同需求强度下的策略稳健性",
       caption: "外部需求变强或变弱时，比较策略是否还能维持链路收益。"
     },
     {
       title: "牛鞭效应",
-      src: "/images/beergame/bullwhip_comparison.png",
+      src: withSiteBasePath("/images/beergame/bullwhip_comparison.png"),
       alt: "牛鞭效应对比图",
       caption: "看订单波动有没有在向上游传递时被继续放大。"
     }
@@ -797,7 +798,7 @@ function BeerGameCase({
           </div>
         </div>
         <figure className="beerFigure beerChainFrame">
-          <img src="/images/beergame/chain_map.png" alt="啤酒游戏企业链路图" />
+          <img src={withSiteBasePath("/images/beergame/chain_map.png")} alt="啤酒游戏企业链路图" />
         </figure>
       </section>
 
@@ -859,7 +860,7 @@ function BeerGameCase({
           </p>
         </div>
         <figure className="beerFigure">
-          <img src="/images/beergame/local_global_tradeoff.png" alt="局部利润与全链路利润对比" />
+          <img src={withSiteBasePath("/images/beergame/local_global_tradeoff.png")} alt="局部利润与全链路利润对比" />
         </figure>
       </section>
 
@@ -975,17 +976,17 @@ function PokerCase({
   const screens = [
     {
       title: "模式选择",
-      src: "/images/poker/poker-start.png",
+      src: withSiteBasePath("/images/poker/poker-start.png"),
       alt: "德州扑克 AI 项目的模式选择页面截图"
     },
     {
       title: "对局行动",
-      src: "/images/poker/poker-table.png",
+      src: withSiteBasePath("/images/poker/poker-table.png"),
       alt: "玩家与 AI 对战的牌桌页面截图"
     },
     {
       title: "翻牌阶段",
-      src: "/images/poker/poker-flop.png",
+      src: withSiteBasePath("/images/poker/poker-flop.png"),
       alt: "带公共牌和下注按钮的德州扑克对局截图"
     }
   ];
