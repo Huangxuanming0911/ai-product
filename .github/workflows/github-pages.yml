@@ -33,9 +33,6 @@ jobs:
 
       - name: Build static site
         run: npm run build:static
-        env:
-          GITHUB_PAGES: "true"
-          GITHUB_PAGES_REPO: ai-product
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
