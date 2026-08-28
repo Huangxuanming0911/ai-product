@@ -3,10 +3,34 @@ import Link from "next/link";
 import {
   ArrowRight,
   EnvelopeSimple,
+  Phone,
   ReadCvLogo
 } from "@phosphor-icons/react/dist/ssr";
 import { practices, profile, works } from "./data/portfolio";
 import { withSiteBasePath } from "./utils/site-path";
+
+const workCovers: Record<string, { src: string; alt: string }> = {
+  "seeding-copilot": {
+    src: "/images/seeding-copilot/workflow.png",
+    alt: "种草文案优化 Copilot 工作流"
+  },
+  "beergame-dqn": {
+    src: "/images/beergame/chain_map.png",
+    alt: "Beer Game 供应链链路图"
+  },
+  "wechat-bot": {
+    src: "/images/wechat-bot/sample-trigger-clean-redacted.jpg",
+    alt: "微信机器人真实对话示例"
+  },
+  "black-flow-companion": {
+    src: "/images/black-flow/unified-map-graph.png",
+    alt: "黑流树海地图节点与路径识别结果"
+  },
+  "poker-ai": {
+    src: "/images/poker/poker-table.png",
+    alt: "德州扑克智能体对战界面"
+  }
+};
 
 export default function Home() {
   return (
@@ -24,10 +48,8 @@ export default function Home() {
 
       <section id="top" className="hero">
         <div className="heroCopy">
-          <p className="eyebrow">{profile.nameEn}</p>
-          <h1>
-            {profile.name}
-          </h1>
+          <h1>{profile.name}</h1>
+          <p className="heroNameEn">{profile.nameEn}</p>
           <p className="heroTitle">{profile.title}</p>
           <p className="lead">{profile.summary}</p>
           <div className="heroActions">
@@ -49,23 +71,15 @@ export default function Home() {
             height={875}
             priority
           />
+          <p>Ideas become clearer when they can be opened, tested and questioned.</p>
         </div>
-      </section>
-
-      <section className="signalStrip" aria-label="个人实践方向">
-        {profile.focus.map((item) => (
-          <div key={item}>
-            <strong>{item}</strong>
-            <span>作品方向</span>
-          </div>
-        ))}
       </section>
 
       <section id="work" className="section workSection">
         <div className="sectionIntro">
           <h2>Selected Work</h2>
           <p>
-            几个近期项目，覆盖内容工具、供应链决策实验、扑克 AI 和微信 Agent。
+            几个近期项目，覆盖内容工具、复杂系统决策、视觉识别、游戏 AI 和微信 Agent。
           </p>
         </div>
         <div className="workGrid">
@@ -75,18 +89,21 @@ export default function Home() {
               href={`/work/${work.slug}/`}
               key={work.slug}
             >
+              <figure className="workCover">
+                <Image
+                  src={withSiteBasePath(workCovers[work.slug].src)}
+                  alt={workCovers[work.slug].alt}
+                  width={1200}
+                  height={760}
+                />
+              </figure>
               <div className="workMeta">
                 <span>{work.label}</span>
-                <span>{work.status}</span>
+                <ArrowRight size={18} weight="bold" aria-hidden="true" />
               </div>
-              <div>
+              <div className="workCardCopy">
                 <h3>{work.title}</h3>
                 <p>{work.summary}</p>
-              </div>
-              <div className="tagRow">
-                {work.tags.slice(0, 4).map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
               </div>
             </Link>
           ))}
@@ -101,13 +118,16 @@ export default function Home() {
           </p>
         </div>
         <div className="practiceGrid">
-          {practices.map((item) => {
+          {practices.map((item, index) => {
             const Icon = item.icon;
             return (
               <article className="practiceItem" key={item.title}>
-                <Icon size={26} weight="bold" />
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
+                <span className="practiceIndex">0{index + 1}</span>
+                <Icon size={24} weight="regular" aria-hidden="true" />
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </div>
               </article>
             );
           })}
@@ -118,17 +138,18 @@ export default function Home() {
         <div className="aboutCopy">
           <h2>About</h2>
           <p>
-            我是{profile.name}。这个站点集中放置我做过的原型、实验和工具，覆盖内容工具、供应链决策、游戏 AI 和微信 Agent 等方向。
+            我是{profile.name}。这个站点集中放置我做过的原型、实验和工具，关注内容工作流、复杂系统决策、视觉识别与智能体交互。
           </p>
-          <p>
-            目前内容还在持续补齐：在线 Demo、项目截图、方法说明和复盘文章会逐步更新。
-          </p>
-          <p className="contactLine">
-            邮箱：<a href={`mailto:${profile.email}`}>{profile.email}</a>
-          </p>
-          <p className="contactLine">
-            电话：<a href={`tel:${profile.phone}`}>{profile.phone}</a>
-          </p>
+          <div className="contactList">
+            <a href={`mailto:${profile.email}`}>
+              <EnvelopeSimple size={20} weight="regular" />
+              {profile.email}
+            </a>
+            <a href={`tel:${profile.phone}`}>
+              <Phone size={20} weight="regular" />
+              {profile.phone}
+            </a>
+          </div>
         </div>
         <div className="aboutActions">
           <a className="button primary" href={`mailto:${profile.email}`}>

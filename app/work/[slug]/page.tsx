@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowSquareOut,
   BeerStein,
   ChatCircleText,
   ChartLineUp,
@@ -11,18 +12,23 @@ import {
   Database,
   FileText,
   GitBranch,
+  GithubLogo,
+  Globe,
   Kanban,
   Key,
+  MapTrifold,
   MagicWand,
   MagnifyingGlass,
   NotePencil,
   PlugsConnected,
   PresentationChart,
   Robot,
+  Path,
   Scales,
   ShieldCheck,
   Sparkle,
   Target,
+  TerminalWindow,
   TrendUp
 } from "@phosphor-icons/react/dist/ssr";
 import { getWork, works } from "../../data/portfolio";
@@ -84,6 +90,10 @@ export default async function WorkPage({ params }: WorkPageProps) {
 
   if (work.slug === "poker-ai") {
     return <PokerCase otherWorks={otherWorks} work={work} />;
+  }
+
+  if (work.slug === "black-flow-companion") {
+    return <BlackFlowCase otherWorks={otherWorks} work={work} />;
   }
 
   return (
@@ -373,6 +383,7 @@ function SeedingCopilotCase({
         </figure>
       </section>
 
+      <ProjectAccess work={work} />
       <section className="seedingRelated">
         <h2>Related work</h2>
         <div className="miniWorkList">
@@ -582,6 +593,7 @@ function WeChatBotCase({
         </div>
       </section>
 
+      <ProjectAccess work={work} />
       <section className="wechatRelated">
         <h2>Related work</h2>
         <div className="miniWorkList">
@@ -903,6 +915,7 @@ function BeerGameCase({
         </div>
       </section>
 
+      <ProjectAccess work={work} />
       <section className="beerRelated">
         <h2>Related work</h2>
         <div className="miniWorkList">
@@ -1137,6 +1150,7 @@ python train.py --generations 5 --lambda 6 --hands 800 --workers 4`}</code>
         </pre>
       </section>
 
+      <ProjectAccess work={work} />
       <section className="pokerRelated">
         <h2>Related work</h2>
         <div className="miniWorkList">
@@ -1149,6 +1163,194 @@ python train.py --generations 5 --lambda 6 --hands 800 --workers 4`}</code>
         </div>
       </section>
     </main>
+  );
+}
+
+function BlackFlowCase({
+  otherWorks,
+  work
+}: {
+  otherWorks: typeof works;
+  work: NonNullable<ReturnType<typeof getWork>>;
+}) {
+  const pipeline = [
+    { title: "读取画面", body: "等待画面稳定，判断地图、部件箱或移动选择状态。", icon: MagnifyingGlass },
+    { title: "还原地图", body: "提取节点、路径与文字语义，生成可复核的无向图。", icon: GitBranch },
+    { title: "评估路线", body: "结合行动点、移动部件、节点偏好和奖励预期比较方案。", icon: Path },
+    { title: "回收证据", body: "识别结算页面，经人工确认后沉淀为结构化奖励数据。", icon: Database }
+  ];
+
+  const figures = [
+    {
+      title: "路径识别",
+      body: "青色区域是从半透明路径 UI 中提取的直接证据；节点和边仍保留待复核状态。",
+      src: withSiteBasePath("/images/black-flow/path-recognition.png"),
+      alt: "黑流树海地图路径识别标注结果"
+    },
+    {
+      title: "统一图结构",
+      body: "识别结果被转换为稳定节点 ID、语义标签、邻接关系与连通性诊断，供规划层读取。",
+      src: withSiteBasePath("/images/black-flow/unified-map-graph.png"),
+      alt: "黑流树海统一地图图结构"
+    },
+    {
+      title: "桌面陪伴界面",
+      body: "对话、路线工具、知识检索和模型设置被收进同一个置顶桌面窗口。",
+      src: withSiteBasePath("/images/black-flow/companion-ui.png"),
+      alt: "Black Flow Companion 桌面应用界面"
+    }
+  ];
+
+  return (
+    <main className="casePage blackFlowCasePage">
+      <Link className="backLink" href="/#work">
+        <ArrowLeft size={18} weight="bold" />
+        返回作品
+      </Link>
+
+      <section className="blackFlowHero">
+        <div>
+          <p className="blackFlowLabel">{work.label}</p>
+          <h1>{work.title}</h1>
+          <p className="lead">{work.summary}</p>
+          <p className="blackFlowIntro">
+            地图上看得见节点和道路，真正困难的是把它们变成一次可解释的选择。
+            这个原型把局内画面逐层转换为图结构、路线约束和奖励证据，让路线建议不只给答案，也保留答案从哪里来。
+          </p>
+        </div>
+        <figure className="blackFlowHeroFigure">
+          <img src={withSiteBasePath("/images/black-flow/unified-map-graph.png")} alt="带节点编号和路径标注的黑流树海地图" />
+          <figcaption>从画面证据到规划层可读取的统一地图</figcaption>
+        </figure>
+      </section>
+
+      <section className="blackFlowSection blackFlowContext">
+        <div>
+          <h2>决策场景</h2>
+          <p>
+            “黑流树海”的路线并不是简单选一条最短路。行动点会消耗，移动部件会改变可达范围，
+            节点奖励又带有不确定性。玩家需要在推进、撤退、探索和资源收益之间持续取舍。
+          </p>
+        </div>
+        <aside>
+          <MapTrifold size={26} weight="duotone" />
+          <strong>只读辅助</strong>
+          <p>系统读取截图并输出建议，不点击、不控制、不修改游戏，也不会把低置信度结果包装成确定答案。</p>
+        </aside>
+      </section>
+
+      <section className="blackFlowSection">
+        <div className="blackFlowSectionHeader">
+          <h2>分析链路</h2>
+          <p>把一个模糊的“往哪走”拆成四个可以单独检查的环节。</p>
+        </div>
+        <div className="blackFlowPipeline">
+          {pipeline.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.title}>
+                <Icon size={24} weight="duotone" />
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="blackFlowSection">
+        <div className="blackFlowSectionHeader">
+          <h2>系统输出</h2>
+          <p>三个界面分别回答：系统看见了什么、如何组织证据，以及玩家最终在哪里使用。</p>
+        </div>
+        <div className="blackFlowGallery">
+          {figures.map((item) => (
+            <figure key={item.title}>
+              <img src={item.src} alt={item.alt} />
+              <figcaption>
+                <strong>{item.title}</strong>
+                <span>{item.body}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="blackFlowSection blackFlowEvidence">
+        <div>
+          <h2>验证与边界</h2>
+          <p>
+            当前版本先建立可信的基线，而不是追求“看起来全自动”。六张校准截图用于人工验收和回归；
+            识别层会输出置信度、冲突和复核标记，只有证据足够时才允许结果进入规划层。
+          </p>
+        </div>
+        <ul>
+          {work.evidence.map((item) => <li key={item}>{item}</li>)}
+        </ul>
+      </section>
+
+      <section className="blackFlowSection blackFlowNext">
+        <h2>下一步</h2>
+        <p>{work.nextStep}</p>
+      </section>
+
+      <ProjectAccess work={work} />
+      <section className="pokerRelated">
+        <h2>Related work</h2>
+        <div className="miniWorkList">
+          {otherWorks.map((item) => (
+            <Link href={`/work/${item.slug}/`} key={item.slug}>
+              <span>{item.title}</span>
+              <ArrowRight size={17} weight="bold" />
+            </Link>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function ProjectAccess({
+  work
+}: {
+  work: NonNullable<ReturnType<typeof getWork>>;
+}) {
+  if (!work.links?.length && !work.quickStart?.length) {
+    return null;
+  }
+
+  return (
+    <div className="projectAccess">
+      <div className="projectAccessHeader">
+        <div>
+          <h2>项目入口</h2>
+          <p>先看运行结果，或进入仓库了解实现细节。</p>
+        </div>
+        <div className="projectAccessLinks">
+          {work.links?.map((link) => {
+            const Icon = link.kind === "demo" ? Globe : GithubLogo;
+            return (
+              <a href={link.href} key={link.href} rel="noreferrer" target="_blank">
+                <Icon size={18} weight="bold" />
+                {link.label}
+                <ArrowSquareOut size={15} weight="bold" />
+              </a>
+            );
+          })}
+        </div>
+      </div>
+      {work.quickStart?.length ? (
+        <div className="projectQuickStart">
+          <TerminalWindow size={24} weight="duotone" />
+          <div>
+            <strong>快速开始</strong>
+            <ol>
+              {work.quickStart.map((step) => <li key={step}>{step}</li>)}
+            </ol>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }
 

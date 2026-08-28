@@ -1,6 +1,33 @@
-# AI Product Portfolio
+# 黄炫铭｜个人作品集
 
-一个面向 AI 产品岗位简历初筛和面试追问的 Next.js 作品集初版。
+一个以项目案例为核心的个人作品集网站，记录我在 AI 产品、智能体原型、复杂系统建模与工程实践中的探索。网站面向招聘方、合作方与对技术产品感兴趣的读者，提供可快速浏览、可继续追问的项目线索。
+
+**线上访问：** [https://www.hxm-lab.cn](https://www.hxm-lab.cn)
+**项目仓库：** [Huangxuanming0911/ai-product](https://github.com/Huangxuanming0911/ai-product)
+
+## 收录案例
+
+| 项目 | 关注的问题 | 案例页 |
+| --- | --- | --- |
+| 种草文案优化 Copilot | 将产品信息、用户证据与平台表达组织为可审核的内容工作流 | [查看](https://www.hxm-lab.cn/work/seeding-copilot/) |
+| Beer Game Decision Lab | 在多主体供应链中观察局部决策、成本传递与全链路利润 | [查看](https://www.hxm-lab.cn/work/beergame-dqn/) |
+| WeChat Bot | 将消息接入、指令路由、上下文与大模型回复连接成可运行的交互链路 | [查看](https://www.hxm-lab.cn/work/wechat-bot/) |
+| Black Flow Companion | 将游戏地图截图转换为图结构，并结合路线约束与奖励实测提供只读决策辅助 | [查看](https://www.hxm-lab.cn/work/black-flow-companion/) |
+| Texas Hold'em Poker AI | 实现可交互的人机对战、对手建模与策略训练流程 | [查看](https://www.hxm-lab.cn/work/poker-ai/) |
+
+## 项目说明
+
+这个网站不是简历的重复排版，而是对项目过程的补充。每个案例尽量呈现：问题背景、系统或产品设计、关键方法、结果证据，以及后续可继续完善的方向。
+
+网站采用静态导出，页面不依赖运行时后端服务；因此可以部署到 GitHub Pages、Vercel、EdgeOne Pages 等静态托管平台。当前生产站点由 GitHub Pages 提供服务，并绑定自定义域名。
+
+## 技术实现
+
+- Next.js 16、React 19、TypeScript
+- 静态导出：`output: "export"`
+- 图片以静态资源方式提供，适配静态托管
+- GitHub Actions 自动构建并发布 GitHub Pages
+- 自定义域名：`www.hxm-lab.cn`
 
 ## 本地运行
 
@@ -9,34 +36,31 @@ npm install
 npm run dev
 ```
 
-## 部署
-
-### 国内平台推荐
-
-这个项目已经配置为 Next.js 静态导出。运行构建后会生成 `out/` 目录，国内平台只需要托管 `out/` 里的静态文件。
+浏览器访问终端显示的本地地址。构建静态产物：
 
 ```bash
-npm install
 npm run build:static
 ```
 
-推荐顺序：
+构建结果位于 `out/` 目录。
 
-1. 腾讯云 EdgeOne Pages：连接 Git 仓库，构建命令 `npm run build:static`，输出目录 `out`。
-2. 阿里云 OSS + CDN：本地构建后上传 `out/` 目录，默认首页设为 `index.html`，404 页面可设为 `404.html`。
-3. 腾讯云 COS + CDN：和 OSS 类似，上传 `out/` 目录并开启静态网站。
+## 在 PPT 中引用
 
-### Vercel 备选
+可直接使用下面这段表述：
 
-如果需要海外访问，可以继续用 Vercel。
+> 个人作品集网站（Next.js 静态站点），集中呈现内容优化、供应链决策分析、视觉识别与路线规划、微信机器人和德州扑克智能体等项目案例。访问地址：https://www.hxm-lab.cn
+
+如需引用某个具体案例，优先放对应案例页链接，而不是首页链接。
+
+## 更新方式
+
+修改内容后，依次执行：
 
 ```bash
-npx vercel@latest
-npx vercel@latest --prod
+npm run build:static
+git add .
+git commit -m "Update portfolio"
+git push origin main
 ```
 
-## 建议替换
-
-- `app/page.tsx` 中的姓名、项目、文章和联系方式
-- `public/resume.pdf` 简历文件
-- `public/images/hero-workbench.png` hero 图
+推送到 `main` 后，GitHub Actions 会自动发布最新版本到 `https://www.hxm-lab.cn`。

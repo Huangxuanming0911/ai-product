@@ -23,6 +23,12 @@ export type Work = {
   stack: string[];
   evidence: string[];
   nextStep: string;
+  links?: Array<{
+    label: string;
+    href: string;
+    kind: "demo" | "code";
+  }>;
+  quickStart?: string[];
 };
 
 export type Practice = {
@@ -39,11 +45,11 @@ export const profile = {
   nameEn: "Huang Xuanming",
   title: "产品分析、AI 原型与系统实验",
   summary:
-    "这里收录一些可以打开、可以追问的个人项目：内容工具、供应链实验、扑克 AI 和微信 Agent。",
+    "这里收录一些可以打开、可以追问的个人项目：内容工具、决策实验、游戏 AI 和微信 Agent。",
   email: "2519453845@qq.com",
   phone: "13646985482",
   resumeHref: "/resume/",
-  focus: ["内容工具", "决策实验", "游戏 AI", "微信 Agent"]
+  focus: ["内容工具", "决策实验", "视觉识别", "游戏 AI"]
 };
 
 export const works: Work[] = [
@@ -73,7 +79,15 @@ export const works: Work[] = [
       "广告感诊断、证据链、优化稿、分镜建议与发布前评分"
     ],
     nextStep:
-      "继续补充 Coze 工作流截图、更多品类验证样本和真实运营反馈，把它从演示型 MVP 推进到可复用的内容优化工作台。"
+      "继续补充 Coze 工作流截图、更多品类验证样本和真实运营反馈，把它从演示型 MVP 推进到可复用的内容优化工作台。",
+    links: [
+      {
+        label: "在线体验",
+        href: "https://ai-real-seeding-director.vercel.app",
+        kind: "demo"
+      }
+    ],
+    quickStart: ["打开在线版本", "填写商品、平台、人群与草稿", "查看诊断、证据链与改写方案"]
   },
   {
     slug: "beergame-dqn",
@@ -101,7 +115,19 @@ export const works: Work[] = [
       "利润分解、需求稳健性和牛鞭效应图表"
     ],
     nextStep:
-      "继续把离线图表升级为可交互分析页，让用户可以切换策略、链路长度和需求强度。"
+      "继续把离线图表升级为可交互分析页，让用户可以切换策略、链路长度和需求强度。",
+    links: [
+      {
+        label: "GitHub 仓库",
+        href: "https://github.com/Huangxuanming0911/beergame-dqn",
+        kind: "code"
+      }
+    ],
+    quickStart: [
+      "安装项目依赖并进入仓库目录",
+      "运行 python -m beergame.run_baselines --config configs/default.json",
+      "运行 python -m beergame.run_product_analysis --config configs/default.json 查看产品化分析"
+    ]
   },
   {
     slug: "wechat-bot",
@@ -130,6 +156,59 @@ export const works: Work[] = [
     ],
     nextStep:
       "补充真实截图、配置片段和一次完整消息链路，把它整理成 IM Agent 进入社交场景的系统案例。"
+  },
+  {
+    slug: "black-flow-companion",
+    title: "Black Flow Companion",
+    label: "Visual Decision Support",
+    summary: "把游戏地图截图转换为可校准的图结构，再结合路线约束与奖励实测提供只读决策辅助。",
+    role: "产品系统设计、视觉识别、路线建模、数据采集、桌面端原型",
+    status: "Read-only Desktop Prototype",
+    tags: ["Computer Vision", "Route Planning", "OCR", "MaaFramework"],
+    overview:
+      "这是一个面向《明日方舟》集成战略“黑流树海”模式的独立只读辅助原型。系统从 PC 截图中识别地图、节点和路径，将画面转换为可检查的图结构，再结合行动点、移动部件、节点偏好和奖励数据提供路线参考。",
+    why:
+      "局内路线选择同时受到地图信息、资源余量、移动规则和不确定奖励影响。与其凭感觉记住所有条件，这个项目尝试把画面中的线索逐层结构化，让每条建议都能回到原始截图、识别结果和规则依据。",
+    built: [
+      "实现 PC 截图归一化、界面状态判断、稳定帧等待与重复帧过滤",
+      "从半透明路径 UI 中提取路径掩码和骨架，检测节点并生成临时无向图",
+      "结合 OCR 与图标交叉验证节点语义，输出置信度、冲突和人工复核标记",
+      "构建路线规划层，综合行动点、移动部件、传送规则、节点偏好和奖励预期",
+      "搭建奖励采集流程，将结算页识别结果保存为可追溯的 JSONL、CSV 与汇总数据",
+      "实现透明置顶的桌面陪伴界面，整合对话、路径工具、知识检索和模型配置"
+    ],
+    stack: ["Python", "OpenCV", "OCR", "MaaFramework", "WebView2", "JSONL / CSV"],
+    evidence: [
+      "六张校准截图的人工验收与回归流程",
+      "统一地图结果包含 29 个节点、35 条边及连通性诊断",
+      "路径掩码、单像素骨架、语义标注与 planner-facing JSON 输出",
+      "奖励结算证据截图、人工确认与结构化数据导出",
+      "可运行的 Windows 桌面陪伴原型"
+    ],
+    nextStep:
+      "把截图识别、局内状态、难度感知奖励先验和路线规划接入同一个桌面陪跑入口；并列呈现推进、撤离、收益和探索方案，在对局结束后用实际奖励校准先验，形成可复盘的决策闭环。",
+    links: [
+      {
+        label: "陪跑助手与识别",
+        href: "https://github.com/Huangxuanming0911/black-flow-advisor",
+        kind: "code"
+      },
+      {
+        label: "路线规划器",
+        href: "https://github.com/Huangxuanming0911/black-flow-route-planner",
+        kind: "code"
+      },
+      {
+        label: "奖励采集器",
+        href: "https://github.com/Huangxuanming0911/black-flow-reward-collector",
+        kind: "code"
+      }
+    ],
+    quickStart: [
+      "运行 .\\build_companion_windows.ps1 构建桌面陪跑助手",
+      "运行 python tools/build_route_planner.py 生成路线试算页面",
+      "运行 python tools/build_empirical_rewards.py 用人工确认记录刷新奖励先验"
+    ]
   },
   {
     slug: "poker-ai",
@@ -169,7 +248,19 @@ export const works: Work[] = [
       "当前展示方式：用截图证明可交互版本已经跑通，在线试玩后续再上服务器"
     ],
     nextStep:
-      "继续补充典型牌局复盘和训练曲线，把 AI 在关键行动点的判断过程讲得更直观。"
+      "继续补充典型牌局复盘和训练曲线，把 AI 在关键行动点的判断过程讲得更直观。",
+    links: [
+      {
+        label: "GitHub 仓库",
+        href: "https://github.com/Huangxuanming0911/poker",
+        kind: "code"
+      }
+    ],
+    quickStart: [
+      "激活 Python 虚拟环境",
+      "运行 python server.py",
+      "打开 http://localhost:5000 与 AI 进行 Heads-up 对局"
+    ]
   }
 ];
 
